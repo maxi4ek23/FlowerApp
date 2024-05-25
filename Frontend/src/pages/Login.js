@@ -8,8 +8,14 @@ import { NavLink } from 'react-router-dom';
 
 function Login() {
 
+  const obj = {
+    name: 'm',
+    surname: 'p'
+  }
+
   const handle = () => {
     console.log('11');
+    console.log(obj);
   }
 
   return (
@@ -28,10 +34,9 @@ function Login() {
             </div>
             <p>You don`t have an account? <NavLink to='/signup'>Sigh up</NavLink></p>
           </div>
-          <button type='submit' className='input__btn'>Login</button>
         </form>
+        <button onClick={handle} className='input__btn'>Login</button>
       </div>
-
     </div>
   );
 };
