@@ -5,6 +5,7 @@ from typing import Dict, Any
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import database_exists, create_database
+from flask_cors import CORS
 
 from .route import register_routes
 
@@ -26,6 +27,7 @@ def create_app(app_config: Dict[str, Any], additional_config: Dict[str, Any]) ->
     """
     _process_input_config(app_config, additional_config)
     app = Flask(__name__)
+    CORS(app)
     app.config["SECRET_KEY"] = secrets.token_hex(16)
     app.config = {**app.config, **app_config}
     app.json.sort_keys = False

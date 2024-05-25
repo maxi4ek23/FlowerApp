@@ -11,7 +11,18 @@ def register_routes(app: Flask) -> None:
     from .user_route import user_bp
     from .category_route import category_bp
     from .goods_route import goods_bp
+    from .bouquet_route import bouquet_bp
+    from .catalogue_route import catalogue_bp
+    from .flower_route import flower_bp
+    from .order_route import order_bp
+    from .packing_route import packing_bp
+
 
     app.register_blueprint(user_bp)
     app.register_blueprint(category_bp)
     app.register_blueprint(goods_bp)
+    app.register_blueprint(bouquet_bp)
+    app.register_blueprint(catalogue_bp)
+    app.register_blueprint(flower_bp)
+    app.register_blueprint(order_bp)
+    app.register_blueprint(packing_bp)

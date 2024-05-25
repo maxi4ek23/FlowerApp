@@ -1,5 +1,6 @@
 from http import HTTPStatus
 from flask import Blueprint, jsonify, Response, request, make_response
+from flask_cors import cross_origin
 
 from flower_store.controller import user_controller
 from flower_store.model import User
@@ -7,6 +8,7 @@ from flower_store.model import User
 user_bp = Blueprint('user', __name__, url_prefix='/user')
 
 @user_bp.get('')
+@cross_origin()
 def get_all_users() -> Response:
     """
     Gets all objects from table
@@ -16,6 +18,7 @@ def get_all_users() -> Response:
 
 
 @user_bp.post('')
+@cross_origin()
 def create_user() -> Response:
     """
     Gets all objects from table using Service layer.
@@ -40,6 +43,7 @@ def create_user() -> Response:
 
 
 @user_bp.post('/login')
+@cross_origin()
 def login_user() -> Response:
     """
     Gets all objects from table using Service layer.
@@ -52,6 +56,7 @@ def login_user() -> Response:
 
 
 @user_bp.get('/<int:user_id>')
+@cross_origin()
 def get_user(user_id: int) -> Response:
     """
     Gets user by ID.
@@ -61,6 +66,7 @@ def get_user(user_id: int) -> Response:
 
 
 @user_bp.put('/<int:user_id>')
+@cross_origin()
 def update_user(user_id: int) -> Response:
     """
     Updates user_id by ID.
@@ -73,6 +79,7 @@ def update_user(user_id: int) -> Response:
 
 
 @user_bp.delete('/<int:user_id>')
+@cross_origin()
 def delete_user(user_id: int) -> Response:
     """
     Deletes user_id by ID.

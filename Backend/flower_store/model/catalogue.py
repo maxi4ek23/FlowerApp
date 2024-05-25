@@ -30,7 +30,7 @@ class Catalogue(db.Model, IDto):
 
     @staticmethod
     def create_from_dto(dto_dict: Dict[str, object]) -> object:
-        from Backend.flower_store.model.bouquet import Bouquet
+        from flower_store.model.bouquet import Bouquet
         catalogue = Catalogue()
         catalogue.bouquets = [Bouquet.create_from_dto(bouquet_dto) for bouquet_dto in dto_dict.get("bouquets", [])]
         return catalogue
@@ -40,5 +40,5 @@ class CatalogueObserverImpl(CatalogueObserver):
     def __init__(self, observer_id):
         self.observer_id = observer_id
 
-    def update(self, flower):
-        print(f"Flower updated: {flower.name}, {flower.color}, {flower.price}")
+    def update(self, catalogue):
+        print(f"Catalogue updated: {catalogue.name}")
