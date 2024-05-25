@@ -1,5 +1,6 @@
 from http import HTTPStatus
 from flask import Blueprint, jsonify, Response, request, make_response
+from flask_cors import cross_origin
 
 from flower_store.controller import goods_controller
 from flower_store.model import Goods
@@ -7,6 +8,7 @@ from flower_store.model import Goods
 goods_bp = Blueprint('goods', __name__, url_prefix='/goods')
 
 @goods_bp.get('')
+@cross_origin()
 def get_all_goods() -> Response:
     """
     Gets all objects from table
@@ -16,6 +18,7 @@ def get_all_goods() -> Response:
 
 
 @goods_bp.post('')
+@cross_origin()
 def create_goods() -> Response:
     """
     Gets all objects from table using Service layer.
@@ -32,6 +35,7 @@ def create_goods() -> Response:
 
 
 @goods_bp.post('/login')
+@cross_origin()
 def login_goods() -> Response:
     """
     Gets all objects from table using Service layer.
@@ -44,6 +48,7 @@ def login_goods() -> Response:
 
 
 @goods_bp.get('/<int:goods_id>')
+@cross_origin()
 def get_goods(goods_id: int) -> Response:
     """
     Gets goods by ID.
@@ -53,6 +58,7 @@ def get_goods(goods_id: int) -> Response:
 
 
 @goods_bp.put('/<int:goods_id>')
+@cross_origin()
 def update_goods(goods_id: int) -> Response:
     """
     Updates goods_id by ID.
@@ -65,6 +71,7 @@ def update_goods(goods_id: int) -> Response:
 
 
 @goods_bp.delete('/<int:goods_id>')
+@cross_origin()
 def delete_goods(goods_id: int) -> Response:
     """
     Deletes goods_id by ID.

@@ -17,7 +17,7 @@ class Bouquet(db.Model, IDto):
     packing = db.relationship('Packing')
     catalogue_id = db.Column(db.Integer, db.ForeignKey('catalogue.id'))
     catalogue = db.relationship('Catalogue', backref='bouquets')
-    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False)
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=True)
     flowers = db.relationship('Flower', backref='bouquet', lazy=True)
 
     def __init__(self, eventType: str, price: int, packing: Packing, catalogue: Catalogue, flowers: List[Flower]):

@@ -1,5 +1,6 @@
 from http import HTTPStatus
 from flask import Blueprint, jsonify, Response, request, make_response
+from flask_cors import cross_origin
 
 from flower_store.controller import category_controller
 from flower_store.model import Category
@@ -7,6 +8,7 @@ from flower_store.model import Category
 category_bp = Blueprint('category', __name__, url_prefix='/category')
 
 @category_bp.get('')
+@cross_origin()
 def get_all_categories() -> Response:
     """
     Gets all objects from table
@@ -16,6 +18,7 @@ def get_all_categories() -> Response:
 
 
 @category_bp.post('')
+@cross_origin()
 def create_category() -> Response:
     """
     Gets all objects from table using Service layer.
@@ -32,6 +35,7 @@ def create_category() -> Response:
 
 
 # @category_bp.post('/login')
+# @cross_origin()
 # def login_user() -> Response:
 #     """
 #     Gets all objects from table using Service layer.
@@ -44,6 +48,7 @@ def create_category() -> Response:
 
 
 @category_bp.get('/<int:category_id>')
+@cross_origin()
 def get_category(category_id: int) -> Response:
     """
     Gets category by ID.
@@ -53,6 +58,7 @@ def get_category(category_id: int) -> Response:
 
 
 @category_bp.put('/<int:category_id>')
+@cross_origin()
 def update_category(category_id: int) -> Response:
     """
     Updates category_id by ID.
@@ -65,6 +71,7 @@ def update_category(category_id: int) -> Response:
 
 
 @category_bp.delete('/<int:category_id>')
+@cross_origin()
 def delete_category(category_id: int) -> Response:
     """
     Deletes category_id by ID.

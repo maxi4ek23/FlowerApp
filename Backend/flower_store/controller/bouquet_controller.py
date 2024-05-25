@@ -13,12 +13,12 @@ class BouquetController:
     def __init__(self):
         self.subject = BouquetSubject()
 
-    def create_bouquet(self, eventType, price, flowers, packing, catalogueName):
+    def create_bouquet(self, eventType, price, flowers, packing, catalogue):
         try:
             packing_builder = PackingBuilder()
             packing = packing_builder.set_name(packing.get('name')).set_price(
                 packing.get('price')).build()
-            catalogue = Catalogue.query.filter_by(name=catalogueName).first()
+            catalogue = Catalogue.query.filter_by(name=catalogue.get('name')).first()
             bouquet_builder = BouquetBuilder()
             bouquet = bouquet_builder \
                 .set_eventType(eventType) \
