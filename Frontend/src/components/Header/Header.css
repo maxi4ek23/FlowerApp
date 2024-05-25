@@ -43,10 +43,7 @@
 .active-item {
     border-bottom: 2px solid black;
 }
-
-.button__block {
-    
-}
+  
 
 .login__button {
     width: 60px;
@@ -55,6 +52,6 @@
     background-color: rgb(218,186,182);
     color: black;
     font-weight: bold;
-    border-radius: 30%;
+    border-radius: 10px;
     border: 2px solid black;
 }
