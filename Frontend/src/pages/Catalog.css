@@ -20,7 +20,7 @@
 .catalog__filters {
     padding: 25px 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 select {

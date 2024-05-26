@@ -1,0 +1,23 @@
+.bouquet__title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.bouquet__info > *:not(:first-child) {
+    margin-top: 8px;
+}
+
+.bouquet__desc {
+    color: gray;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.bouquet__btn {
+    padding: 8px;
+    border: 2px solid rgb(248, 138, 11);
+    border-radius: 20px;
+    background-color: antiquewhite;
+    font-weight: bold;
+    color: black;
+}

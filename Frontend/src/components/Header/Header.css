@@ -56,3 +56,8 @@
     border-radius: 10px;
     border: 2px solid black;
 }
+
+.header__profile a {
+    color: black;
+    font-size: 18px;
+}

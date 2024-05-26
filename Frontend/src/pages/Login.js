@@ -28,12 +28,12 @@ function Login() {
   const press = async () => {
     try {
       const response = await axios.post('http://127.0.0.1:5000/user/login', formData);
-      /*console.log(response.data);*/
       console.log(response.data);
-      console.log(localStorage.getItem('lol'));
+      localStorage.setItem('loggined_user', JSON.stringify(response.data));
+      console.log(JSON.parse(localStorage.getItem('loggined_user')));
+
       /*localStorage.setItem('loggined_user', response.data);*/
-      console.log(localStorage.length);
-      navigate('/catalog');
+      navigate('/');
     } catch (error) {
       console.log(error);
       if (error.response.data === 'Object not found') {

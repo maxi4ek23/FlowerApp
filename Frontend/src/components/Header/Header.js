@@ -1,39 +1,63 @@
 
 import './Header.css';
-import Home from '../../pages/Home';
-import Catalog from '../../pages/Catalog';
-import Login from '../../pages/Login';
-import {NavLink, Route, Routes } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from '../../images/logo_flo.png';
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 
-function Header() {
+function Header({ log }) {
     const selected = 'active-item';
     const navigate = useNavigate();
+
+    /*const [isUserLoggedIn, setIsUserLoggedIn] = useState(log);
+
+    useEffect(() => {
+        checkUserStatus();
+    }, []);
+
+    const checkUserStatus = () => {
+        const loggedInUser = JSON.parse(localStorage.getItem('loggined_user'));
+        if (loggedInUser) {
+            setIsUserLoggedIn(true);
+        } else {
+            setIsUserLoggedIn(false);
+        }
+    };*/
+
+
     return (
         <div>
             <header className="header">
                 <div className="header-container">
                     <NavLink to='/'>
                         <div className="header__logo">
-                            <img src={Logo} alt="logo"/>
+                            <img src={Logo} alt="logo" />
                         </div>
                     </NavLink>
                     <nav className="header__items">
                         <ul>
                             <li className="header__item">
-                                <NavLink  to='/' end className={({ isActive }) => isActive ? selected : undefined}>Home</NavLink>
+                                <NavLink to='/' end className={({ isActive }) => isActive ? selected : undefined}>Home</NavLink>
                             </li>
                             <li className="header__item">
-                                <NavLink  to='/catalog' className={({ isActive }) => isActive ? selected : undefined}>Catalog</NavLink>
+                                <NavLink to='/catalog' className={({ isActive }) => isActive ? selected : undefined}>Catalog</NavLink>
                             </li>
                         </ul>
                     </nav>
-                    <div className='button__block'>
-                        <button className='login__button' onClick={() => navigate('/login')}>Login</button>
-                    </div>
+                    {
+                        log ? (
+                            <div className='header__profile'>
+                                <NavLink to={`/user/${JSON.parse(localStorage.getItem('loggined_user')).id}`} className={({ isActive }) => isActive ? selected : undefined}>Profile</NavLink>
+                            </div> 
+                        ) : (
+                            <div className='button__block'>
+                                <button className='login__button' onClick={() => navigate('/login')}>Login</button>
+                            </div>
+                        )
+                    }
                 </div>
             </header>
         </div>

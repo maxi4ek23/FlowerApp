@@ -2,39 +2,34 @@ import React from 'react';
 import './Catalog.css';
 import Header from '../components/Header/Header';
 import CatalogCard from '../components/CatalogCard/CatalogCard';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import datas from '../data/data';
 
 function Catalog() {
 
-  const datas = [
-    {
-      name: 'lol',
-      age: '12'
-    },
-    {
-      name: 'lol1',
-      age: '12'
-    },
-    {
-      name: 'lol2',
-      age: '12'
-    },
-    {
-      name: 'lol3',
-      age: '12'
-    },
-    {
-      name: 'lol4',
-      age: '12'
-    },
-    {
-      name: 'lol5',
-      age: '12'
+  const filters = ['Filter by event', 'Wedding', 'Birthday', 'Valentine Day', 'Funerals'];
+
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+  useEffect(() => {
+    checkUserStatus();
+  }, []);
+
+  const checkUserStatus = () => {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggined_user'));
+    if (loggedInUser) {
+      setIsUserLoggedIn(true);
+      console.log('true');
+    } else {
+      setIsUserLoggedIn(false);
+      console.log('false');
     }
-  ]
+  };
 
   return (
     <div>
-      <Header />
+      <Header log={isUserLoggedIn} />
       <main className='catalog'>
         <div className='catalog__container'>
           <div className='catalog-title-block'>
@@ -43,7 +38,9 @@ function Catalog() {
           <div className='catalog-filter-block'>
             <div className='catalog__filters'>
               <select>
-                <option>Events</option>
+                {
+                  filters.map((type) => <option key={type} value={type}>{type}</option>)
+                }
               </select>
               <select></select>
 
