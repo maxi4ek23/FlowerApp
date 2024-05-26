@@ -37,6 +37,14 @@ def get_bouquet(id: int) -> Response:
     return make_response(jsonify(bouquet.put_into_dto()), HTTPStatus.OK)
 
 
+@bouquet_bp.get('event_type/<string:event_type>')
+@cross_origin()
+def get_bouquet_by_event(event_type: str) -> Response:
+    bouquet = bouquet_controller.get_by_event(event_type)
+    return make_response(jsonify(bouquet), HTTPStatus.OK)
+
+
+
 @bouquet_bp.get('')
 @cross_origin()
 def get_all_bouquets() -> Response:

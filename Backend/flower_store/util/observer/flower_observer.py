@@ -29,6 +29,6 @@ class FlowerSubject:
         return None
 
 
-    def notify_observers(self, flower):
+    def notify_observers(self, flower, action="updated"):
         for observer in self._observers:
-            observer.update(flower)
+            observer.update(flower, action)

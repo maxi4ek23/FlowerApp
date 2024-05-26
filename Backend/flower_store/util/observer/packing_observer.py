@@ -26,6 +26,6 @@ class PackingSubject:
             if observer.observer_id == observer_id:
                 return observer
         return None
-    def notify_observers(self, packing):
+    def notify_observers(self, packing, action="updated"):
         for observer in self._observers:
-            observer.update(packing)
+            observer.update(packing, action)

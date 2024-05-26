@@ -82,8 +82,9 @@ CRUD requests
 }
 ```
 
-\*Category:
-------POST:http://127.0.0.1:5000/category
+\*Catalogue:
+------POST:http://127.0.0.1:5000/catalogue
+`
 
 ```json
 {
@@ -91,19 +92,61 @@ CRUD requests
 }
 ```
 
------GET(all):http://127.0.0.1:5000/category
+-----GET(all):http://127.0.0.1:5000/catalogue
 
-\*Goods:
+\*Order:
 
 ```
------POST:http://127.0.0.1:5000/goods
+-----POST:http://127.0.0.1:5000/order
 ```
 
 ```json
 {
-  "name": "rose",
-  "price": 20,
-  "description": "hfhf",
-  "category_id": 1
+  "price": 700,
+  "deliveryType": "Nova Poshta",
+  "clientId": 1,
+  "bouquets": [
+    {
+      "name": "Rose Bouquet",
+      "eventType": "Birthday",
+      "price": 600,
+      "packing": {
+        "name": "Craft",
+        "price": 55
+      },
+      "catalogue": "Bouquets",
+
+      "flowers": [
+        {
+          "name": "White Rose",
+          "color": "white",
+          "price": 30
+        },
+        {
+          "name": "Red Rose",
+          "color": "red",
+          "price": 40
+        },
+        {
+          "name": "Pink Rose",
+          "color": "pink",
+          "price": 40
+        }
+      ]
+    }
+  ]
+}
+```
+
+\*Packing(update):
+
+```
+-----PUT:http://127.0.0.1:5000/packing
+```
+
+```json
+{
+  "name": "Craft",
+  "price": 100
 }
 ```

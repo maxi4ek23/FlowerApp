@@ -19,7 +19,7 @@ class PackingController:
             db.session.commit()
             new_observer = PackingObserverImpl(packing.id)
             self.subject.add_observer(new_observer)
-            self.subject.notify_observers(packing)
+            self.subject.notify_observers(packing, action='created')
             return packing
         except Exception as e:
             db.session.rollback()
@@ -61,7 +61,7 @@ class PackingController:
         try:
             db.session.delete(packing)
             db.session.commit()
-            self.subject.notify_observers(packing)
+            self.subject.notify_observers(packing, action='deleted')
             self.subject.remove_observer(packing.id)
         except Exception as e:
             db.session.rollback()
