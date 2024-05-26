@@ -37,8 +37,8 @@ class Bouquet(db.Model, IDto):
             "id": self.id,
             "eventType": self.eventType,
             "price": self.price,
-            "packing": self.packing.put_into_dto(),
-            "catalogue": self.catalogue.put_into_dto_excluding_bouquets(),
+            "packing": self.packing.put_into_dto() if self.packing else {},
+            "catalogue": self.catalogue.put_into_dto_excluding_bouquets() if self.catalogue else {},
             "flowers": [flower.put_into_dto() for flower in self.flowers]
         }
 
@@ -57,5 +57,11 @@ class BouquetObserverImpl(BouquetObserver):
     def __init__(self, observer_id):
         self.observer_id = observer_id
 
-    def update(self, bouquet):
-        print(f"Flower updated: {bouquet.eventType}, {bouquet.price}")
+    def update(self, bouquet, action):
+        if action == "deleted":
+            print(f"Bouquet deleted: {bouquet.name}, {bouquet.color}, {bouquet.price}")
+        elif action == "created":
+            print(f"Bouquet created: {bouquet.name}, {bouquet.color}, {bouquet.price}")
+        else:
+            print(f"Bouquet updated: {bouquet.name}, {bouquet.color}, {bouquet.price}")
+        # print(f"Flower updated: {bouquet.eventType}, {bouquet.price}")

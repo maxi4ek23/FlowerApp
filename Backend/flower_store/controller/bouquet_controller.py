@@ -32,7 +32,7 @@ class BouquetController:
             db.session.commit()
             new_observer = BouquetObserverImpl(bouquet.id)
             self.subject.add_observer(new_observer)
-            self.subject.notify_observers(bouquet)
+            self.subject.notify_observers(bouquet, action='created')
             return bouquet
         except Exception as e:
             db.session.rollback()
@@ -43,6 +43,12 @@ class BouquetController:
         if bouquet is None:
             abort(HTTPStatus.NOT_FOUND)
         return bouquet
+    
+    def get_by_event(self, eventType):
+        bouquet = Bouquet.query.filter_by(eventType=eventType)
+        if bouquet is None:
+            abort(HTTPStatus.NOT_FOUND)
+        list(map(lambda x: x.put_into_dto(), bouquet))
 
     def get_all_bouquets(self):
         return Bouquet.query.all()
@@ -82,7 +88,7 @@ class BouquetController:
 
             db.session.delete(bouquet)
             db.session.commit()
-            self.subject.notify_observers(bouquet)
+            self.subject.notify_observers(bouquet, action='deleted')
             self.subject.remove_observer(bouquet.id)
         except Exception as e:
             db.session.rollback()

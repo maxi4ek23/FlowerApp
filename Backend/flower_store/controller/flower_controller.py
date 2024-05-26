@@ -23,7 +23,7 @@ class FlowerController:
             db.session.commit()
             new_observer = FlowerObserverImpl(flower.id)
             self.subject.add_observer(new_observer)
-            self.subject.notify_observers(flower)
+            self.subject.notify_observers(flower, action='created')
             return flower
         except Exception as e:
             db.session.rollback()
@@ -69,7 +69,7 @@ class FlowerController:
             db.session.delete(flower)
             db.session.commit()
 
-            self.subject.notify_observers(flower)
+            self.subject.notify_observers(flower, action='deleted')
             self.subject.remove_observer(flower.id)
         except Exception as e:
             db.session.rollback()

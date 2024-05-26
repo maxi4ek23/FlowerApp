@@ -26,6 +26,6 @@ class BouquetSubject:
             if observer.observer_id == observer_id:
                 return observer
         return None
-    def notify_observers(self, bouquet):
+    def notify_observers(self, bouquet, action="updated"):
         for observer in self._observers:
-            observer.update(bouquet)
+            observer.update(bouquet, action)

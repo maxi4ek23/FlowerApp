@@ -38,5 +38,11 @@ class FlowerObserverImpl(FlowerObserver):
     def __init__(self, observer_id):
         self.observer_id = observer_id
 
-    def update(self, flower):
-        print(f"Flower updated: {flower.name}, {flower.color}, {flower.price}")
+    def update(self, flower, action):
+        if action == "deleted":
+            print(f"Flower deleted: {flower.name}, {flower.color}, {flower.price}")
+        elif action == "created":
+            print(f"Flower created: {flower.name}, {flower.color}, {flower.price}")
+        else:
+            print(f"Flower updated: {flower.name}, {flower.color}, {flower.price}")
+        # print(f"Flower updated: {flower.name}, {flower.color}, {flower.price}")

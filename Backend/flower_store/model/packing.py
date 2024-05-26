@@ -34,5 +34,11 @@ class PackingObserverImpl(PackingObserver):
     def __init__(self, observer_id):
         self.observer_id = observer_id
 
-    def update(self, packing):
-        print(f"Flower updated: {packing.name}, {packing.price}")
+    def update(self, packing, action):
+        if action == "deleted":
+            print(f"Packing deleted: {packing.name}, {packing.price}")
+        elif action == "created":
+            print(f"Packing created: {packing.name}, {packing.price}")
+        else:
+            print(f"Packing updated: {packing.name}, {packing.price}")
+        # print(f"Flower updated: {packing.name}, {packing.price}")
