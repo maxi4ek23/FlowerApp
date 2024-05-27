@@ -14,7 +14,6 @@ def register_routes(app: Flask) -> None:
     from .order_route import order_bp
     from .packing_route import packing_bp
     from .user_route import user_bp
-    from .bonus_card_route import bonus_card_bp
 
 
     app.register_blueprint(bouquet_bp)
@@ -23,4 +22,3 @@ def register_routes(app: Flask) -> None:
     app.register_blueprint(order_bp)
     app.register_blueprint(packing_bp)
     app.register_blueprint(user_bp)
-    app.register_blueprint(bonus_card_bp)

@@ -45,10 +45,10 @@ class BouquetController:
         return bouquet
     
     def get_by_event(self, eventType):
-        bouquet = Bouquet.query.filter_by(eventType=eventType)
+        bouquet = Bouquet.query.filter_by(eventType=eventType).all
         if bouquet is None:
             abort(HTTPStatus.NOT_FOUND)
-        list(map(lambda x: x.put_into_dto(), bouquet))
+        return list(map(lambda x: x.put_into_dto(), bouquet))
 
     def get_all_bouquets(self):
         return Bouquet.query.all()
