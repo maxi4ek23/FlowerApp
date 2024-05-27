@@ -56,7 +56,9 @@ CRUD requests
   "name": "user",
   "email": "user@gmail.com",
   "password": "1234",
-  "is_admin": false
+  "is_admin": false,
+  "card_type": "bonus" (or empty if user dont
+   have a card)
 }
 ```
 
@@ -78,7 +80,9 @@ CRUD requests
   "name": "user1111",
   "email": "user@gmail.com",
   "password": "1234",
-  "is_admin": false
+  "is_admin": false,
+  "card_type": "bonus" (or empty if user dont
+   have a card)
 }
 ```
 

@@ -11,7 +11,8 @@ class User(db.Model, IDto):
     email: str = db.Column(db.String(45), nullable=False)
     password: str = db.Column(db.String(45), nullable=False)
     is_admin: bool = db.Column(db.Boolean, nullable=False)
-    bonus_card = db.relationship("BonusCard", backref="user")
+    card_type: str = db.Column(db.String(45))
+    # bonus_card = db.relationship("BonusCard", backref="user")
     # bonus_card_id: int = db.Column(db.Integer, db.ForeignKey("bonus_card"))
 
 
@@ -22,7 +23,7 @@ class User(db.Model, IDto):
             "email": self.email,
             "password": self.password,
             "is_admin": self.is_admin,
-            "bonus_card": self.bonus_card[0].put_into_dto() if len(self.bonus_card) >= 1 else {}
+            "card_type": self.card_type
         }
 
     @staticmethod
@@ -31,6 +32,7 @@ class User(db.Model, IDto):
             name = dto_dict.get("name"),
             email = dto_dict.get("email"),
             password = dto_dict.get("password"),
-            is_admin = dto_dict.get("is_admin")
+            is_admin = dto_dict.get("is_admin"),
+            card_type = dto_dict.get("card_type")
         )
         return obj
