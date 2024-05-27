@@ -1,0 +1,18 @@
+.profile {
+    background-color: rgba(246, 243, 241, 255);
+}
+
+.profile__container {
+    width: 1300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profile-title-block {
+    padding: 25px 0;
+}
+
+.profile__title {
+    font-weight: bold;
+    font-size: 20px;
+}

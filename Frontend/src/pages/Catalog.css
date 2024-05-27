@@ -1,5 +1,6 @@
 .catalog {
     background-color: rgba(246, 243, 241, 255);
+    height: 89vh
 }
 
 .catalog__container {
@@ -36,11 +37,27 @@ select {
 .catalog-card-block {
     padding: 25px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     flex-wrap: wrap;
 }
 
 .catalog-card-block>*:not(:nth-child(-n+4)) {
     margin-top: 40px;
+}
+
+.catalog-card-block > *:not(:nth-child(4n+1)) {
+    margin-left: 30px;
+  }
+  
+
+.catalog__button {
+    background-color: rgb(218,186,182);
+    color: black;
+    padding: 8px;
+    width: 150px;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid rgb(248, 138, 11);
+    border-radius: 20px;
 }

@@ -9,7 +9,8 @@ import axios from 'axios';
 
 function Catalog() {
 
-  const filters = ['Filter by event', 'Wedding', 'Birthday', 'Valentine Day', 'Funerals'];
+  const filters = ['Filter by event', 'All', 'Wedding', 'Birthday', 'Valentine Day', 'Funerals'];
+  let [filterEvent, setFilterEvent] = useState('Filter by event');
 
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [data, setData] = useState([]);
@@ -23,17 +24,27 @@ function Catalog() {
     const loggedInUser = JSON.parse(localStorage.getItem('loggined_user'));
     if (loggedInUser) {
       setIsUserLoggedIn(true);
-      console.log('true');
     } else {
       setIsUserLoggedIn(false);
-      console.log('false');
     }
   };
+
+  const filter = async () => {
+    console.log(filterEvent);
+    if (filterEvent === 'All' || filterEvent === 'Filter by event') {
+      fetchData();
+    }
+    try {
+      const response = await axios.get(`http://127.0.0.1:5000/bouquet/event_type/${filterEvent}`);
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const fetchData = async () => {
     try {
       const response = await axios.get('http://127.0.0.1:5000/bouquet');
-      console.log(response.data);
       setData(response.data);
     } catch (error) {
       console.log(error);
@@ -50,12 +61,12 @@ function Catalog() {
           </div>
           <div className='catalog-filter-block'>
             <div className='catalog__filters'>
-              <select>
+              <select onChange={(e) => setFilterEvent(e.target.value)}>
                 {
                   filters.map((type) => <option key={type} value={type}>{type}</option>)
                 }
               </select>
-              <select></select>
+              <button onClick={filter} className='catalog__button'>Submit filter</button>
 
             </div>
           </div>
