@@ -23,7 +23,7 @@ class User(db.Model, IDto):
             "email": self.email,
             "password": self.password,
             "is_admin": self.is_admin,
-            "bonus_card": self.card_type
+            "card_type": self.card_type
         }
 
     @staticmethod
@@ -32,6 +32,7 @@ class User(db.Model, IDto):
             name = dto_dict.get("name"),
             email = dto_dict.get("email"),
             password = dto_dict.get("password"),
-            is_admin = dto_dict.get("is_admin")
+            is_admin = dto_dict.get("is_admin"),
+            card_type = dto_dict.get("card_type")
         )
         return obj
