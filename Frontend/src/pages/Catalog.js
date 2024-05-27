@@ -5,15 +5,18 @@ import CatalogCard from '../components/CatalogCard/CatalogCard';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import datas from '../data/data';
+import axios from 'axios';
 
 function Catalog() {
 
   const filters = ['Filter by event', 'Wedding', 'Birthday', 'Valentine Day', 'Funerals'];
 
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     checkUserStatus();
+    fetchData();
   }, []);
 
   const checkUserStatus = () => {
@@ -26,6 +29,16 @@ function Catalog() {
       console.log('false');
     }
   };
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/bouquet');
+      console.log(response.data);
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div>
@@ -48,7 +61,7 @@ function Catalog() {
           </div>
           <div className='catalog-card-block'>
             {
-              datas.map((data, idx) => (
+              data.map((data, idx) => (
                 <CatalogCard item={data} key={idx} />
               ))}
           </div>
