@@ -2,8 +2,11 @@ import React from 'react';
 import { Card } from "antd";
 import image from '../../images/8-тр.jpeg'
 import './CatalogCard.css';
+import { NavLink } from "react-router-dom";
 
-function CatalogCard({ item }) {
+function CatalogCard({ bouquet }) {
+
+
     return (
         <Card
             hoverable
@@ -13,10 +16,12 @@ function CatalogCard({ item }) {
             style={{ width: 300, borderRadius: '15px' }}>
 
             <div className='bouquet__info'>
-                <h1 className='bouquet__title'>Ideal bouquet for {item.eventType}</h1>
-                <h3 className='bouquet__desc'>{item.flowers.length} {item.flowers[0].name}s packed in {item.packing.name}</h3>
-                <p className="bouquet__price"> <strong>Price:</strong> ${item.price}</p>
-                <button className='bouquet__btn'>Add to my order</button>
+                <h1 className='bouquet__title'>Ideal bouquet for {bouquet.eventType}</h1>
+                <h3 className='bouquet__desc'>{bouquet.flowers.length} {bouquet.flowers[0].name}s packed in {bouquet.packing.name}</h3>
+                <p className="bouquet__price"> <strong>Price:</strong> ${bouquet.price}</p>
+                <NavLink to={`/catalog/${bouquet.id}`}>
+                    <button className='bouquet__btn'>View more</button>
+                </NavLink>
             </div>
 
         </Card>

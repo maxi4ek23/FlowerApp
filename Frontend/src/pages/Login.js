@@ -33,7 +33,7 @@ function Login() {
       console.log(JSON.parse(localStorage.getItem('loggined_user')));
 
       /*localStorage.setItem('loggined_user', response.data);*/
-      navigate('/');
+      navigate('/catalog');
     } catch (error) {
       console.log(error);
       if (error.response.data === 'Object not found') {

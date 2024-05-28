@@ -24,8 +24,8 @@ function Home() {
 
   const logout = () => {
     console.log(JSON.parse(localStorage.getItem('loggined_user')));
-    /*localStorage.removeItem('loggined_user');
-    setIsUserLoggedIn(false);*/
+    localStorage.removeItem('loggined_user');
+    setIsUserLoggedIn(false);
     console.log('false');
   }
 

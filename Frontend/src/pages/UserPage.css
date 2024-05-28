@@ -16,3 +16,143 @@
     font-weight: bold;
     font-size: 20px;
 }
+
+.profile-info-block {
+    padding: 20px 0;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 350px;
+}
+
+.profile-info-block {
+    margin-top: 20px;
+}
+
+.profile__subtitle {
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.profile__info {
+    margin-top: 15px;
+}
+
+.profile-card-block {
+    padding: 30px 0;
+}
+
+.profile__cards {
+    margin: 35px auto 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile__input {
+    margin: 20px auto 0;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.gold{
+    padding-top: 70px;
+    background-color: gold;
+    border-radius: 15px;
+    width: 360px;
+    height: 150px;
+}
+
+.gold h5 {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.gold div {
+    margin-top: 25px;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bonus {
+    padding-top: 70px;
+    background-color: black;
+    border-radius: 15px;
+    width: 360px;
+    height: 150px;
+}
+
+.bonus h5 {
+    color: yellow;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bonus div {
+    margin-top: 25px;
+    color: yellow;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.social {
+    padding-top: 70px;
+    background-color: white;
+    border-radius: 15px;
+    width: 360px;
+    height: 150px;
+}
+
+.social h5 {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.social div {
+    margin-top: 25px;
+    color: black;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile__button {
+    margin-top: 20px;
+    background-color: rgb(218,186,182);
+    color: black;
+    padding: 8px;
+    width: 150px;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid rgb(248, 138, 11);
+    border-radius: 20px;
+}
+
+.cart__title {
+    font-weight: 700;
+    font-size: 35px;
+    text-align: center;
+}
+
+.cart-item__block>*:not(:first-child) {
+    margin-top: 30px;
+}
+
+.cart__expense {
+    font-size: 23px;
+    text-align: end;
+    margin-right: 300px;
+}
+
+.cart__block {
+    min-height: 500px;
+}
+
+.deliver {
+    margin: 20px 0;
+}

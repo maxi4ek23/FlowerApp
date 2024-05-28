@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import datas from '../data/data';
 import axios from 'axios';
+import { useNavigate} from "react-router-dom";
 
 function Catalog() {
 
@@ -14,6 +15,7 @@ function Catalog() {
 
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     checkUserStatus();
@@ -51,6 +53,10 @@ function Catalog() {
     }
   }
 
+  const navigation = () => {
+    navigate(`/bouquet`);
+}
+
   return (
     <div>
       <Header log={isUserLoggedIn} />
@@ -66,15 +72,17 @@ function Catalog() {
                   filters.map((type) => <option key={type} value={type}>{type}</option>)
                 }
               </select>
-              <button onClick={filter} className='catalog__button'>Submit filter</button>
+              <div className='catalog__buttons'>
+                <button onClick={filter} className='catalog__button'>Submit filter</button>
+                <button onClick={navigation} className='catalog__button'>Create your own bouquet</button>
+              </div>
 
             </div>
           </div>
           <div className='catalog-card-block'>
-            {
-              data.map((data, idx) => (
-                <CatalogCard item={data} key={idx} />
-              ))}
+            {data.slice(0, 8).map((item, idx) => (
+              <CatalogCard bouquet={item} key={idx} />
+            ))}
           </div>
 
 
