@@ -33,7 +33,10 @@ class PackingController:
 
     def get_all_packings(self):
         return Packing.query.all()
-
+    
+    def get_packing_by_name(self, name):
+        return Packing.query.filter_by(name=name).all()
+       
     def update_packing(self, id, data):
         packing = self.get_packing(id)
         if packing is None:

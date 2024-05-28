@@ -1,12 +1,18 @@
 from typing import Dict, List
-
+from flask_socketio import SocketIO, emit
+from flower_store import socketio
 
 class BouquetObserver:
-    def __init__(self, observer_id):
+    def __init__(self, observer_id, sid):
         self.observer_id = observer_id
+        self.sid = sid
 
-    def update(self, bouquet):
-        print("Bouquet updated")
+
+    def update(self, bouquet, action="updated"):
+        message = f"Bouquet {action}: {bouquet}"
+        socketio.emit('bouquet_update', message, room=self.sid)
+    # def update(self, bouquet):
+    #     print("Bouquet updated")
 
 
 class BouquetSubject:

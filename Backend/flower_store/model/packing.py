@@ -2,6 +2,7 @@ from typing import Dict
 from flower_store import db
 from flower_store.model.i_dto import IDto
 from flower_store.util.observer.packing_observer import PackingObserver
+from flower_store import socketio
 
 
 class Packing(db.Model, IDto):
@@ -31,14 +32,18 @@ class Packing(db.Model, IDto):
 
 
 class PackingObserverImpl(PackingObserver):
-    def __init__(self, observer_id):
-        self.observer_id = observer_id
+    def __init__(self, observer_id, sid=None):
+        super().__init__(observer_id)
+        self.sid = sid
+        # self.observer_id = observer_id
 
     def update(self, packing, action):
+        print(packing.name)
         if action == "deleted":
-            print(f"Packing deleted: {packing.name}, {packing.price}")
+           message = f"Packing deleted: {packing.name}, {packing.price}"
         elif action == "created":
-            print(f"Packing created: {packing.name}, {packing.price}")
+            message = f"Packing created: {packing.name}, {packing.price}"
         else:
-            print(f"Packing updated: {packing.name}, {packing.price}")
+            message = f"Packing updated: {packing.name}, {packing.price}"
+        socketio.emit('packing_update', message, room=self.sid)
         # print(f"Flower updated: {packing.name}, {packing.price}")

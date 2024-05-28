@@ -2,11 +2,13 @@ import os
 import secrets
 from typing import Dict, Any
 
-from flask import Flask
+from flask_socketio import SocketIO, emit
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
 
+# from .util.observer.packing_observer import PackingObserver, PackingSubject
 from .route import register_routes
 
 SECRET_KEY = "SECRET_KEY"
@@ -16,7 +18,7 @@ MYSQL_ROOT_PASSWORD = "MYSQL_ROOT_PASSWORD"
 
 # Database
 db = SQLAlchemy()
-
+socketio = SocketIO(cors_allowed_origins="*")
 
 def create_app(app_config: Dict[str, Any], additional_config: Dict[str, Any]) -> Flask:
     """
@@ -28,9 +30,26 @@ def create_app(app_config: Dict[str, Any], additional_config: Dict[str, Any]) ->
     _process_input_config(app_config, additional_config)
     app = Flask(__name__)
     CORS(app)
+    socketio.init_app(app)
     app.config["SECRET_KEY"] = secrets.token_hex(16)
     app.config = {**app.config, **app_config}
     app.json.sort_keys = False
+
+    # @socketio.on('connect')
+    # def handle_connect():
+    #     sid = request.sid
+    #     observer_id = request.args.get('observer_id')
+    #     observer = PackingObserver(observer_id, sid)
+    #     PackingSubject.add_observer(observer)
+    #     print(f'Client {observer_id} connected and registered as observer with sid {sid}')
+
+    # @socketio.on('disconnect')
+    # def handle_disconnect():
+    #     sid = request.sid
+    #     observer_id = request.args.get('observer_id')
+    #     PackingSubject.remove_observer(observer_id)
+    #     print(f'Client {observer_id} disconnected and unregistered as observer with sid {sid}')
+
 
     _init_db(app)
     register_routes(app)
