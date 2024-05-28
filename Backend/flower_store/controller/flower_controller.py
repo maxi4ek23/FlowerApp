@@ -37,6 +37,9 @@ class FlowerController:
 
     def get_all_flowers(self):
         return Flower.query.all()
+    
+    def get_flower_by_name(self, name):
+        return Flower.query.filter_by(name=name).all()
 
     def update_flower(self, id, data):
         flower = self.get_flower(id)

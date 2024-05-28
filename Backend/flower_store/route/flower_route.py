@@ -35,6 +35,14 @@ def get_all_flowers() -> Response:
     flowers_dto = [flower.put_into_dto() for flower in flowers]
     return make_response(jsonify(flowers_dto), HTTPStatus.OK)
 
+@flower_bp.get('name/<string:name>')
+@cross_origin()
+def get_flower_by_name(name: str) -> Response:
+    flowers = flower_controller.get_flower_by_name(name)
+    flowers_dto = [flower.put_into_dto() for flower in flowers]
+    return jsonify(flowers_dto), 200
+
+
 
 @flower_bp.put('/<int:id>')
 @cross_origin()

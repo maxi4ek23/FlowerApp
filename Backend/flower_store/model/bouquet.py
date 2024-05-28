@@ -1,4 +1,5 @@
 from typing import Dict, List
+
 from flower_store import db
 
 from flower_store.model.catalogue import Catalogue
@@ -6,6 +7,7 @@ from flower_store.model.flower import Flower
 from flower_store.model.i_dto import IDto
 from flower_store.model.packing import Packing
 from flower_store.util.observer.bouquet_observer import BouquetObserver
+from flower_store import socketio
 
 
 class Bouquet(db.Model, IDto):
@@ -59,9 +61,10 @@ class BouquetObserverImpl(BouquetObserver):
 
     def update(self, bouquet, action):
         if action == "deleted":
-            print(f"Bouquet deleted: {bouquet.name}, {bouquet.color}, {bouquet.price}")
+            message = f"Bouquet deleted: {bouquet.name}, {bouquet.color}, {bouquet.price}"
         elif action == "created":
-            print(f"Bouquet created: {bouquet.name}, {bouquet.color}, {bouquet.price}")
+             message = f"Bouquet created: {bouquet.name}, {bouquet.color}, {bouquet.price}"
         else:
-            print(f"Bouquet updated: {bouquet.name}, {bouquet.color}, {bouquet.price}")
+             message = f"Bouquet updated: {bouquet.name}, {bouquet.color}, {bouquet.price}"
+        socketio.emit('bouquet_update', message, room=self.sid)
         # print(f"Flower updated: {bouquet.eventType}, {bouquet.price}")

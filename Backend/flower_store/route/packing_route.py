@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, Response, jsonify, make_response, request
 from flask_cors import cross_origin
 from flower_store.controller import packing_controller
+from http import HTTPStatus
 
 packing_bp = Blueprint('packing', __name__, url_prefix='/packing')
 
@@ -20,6 +21,12 @@ def get_packing(id):
     packing = packing_controller.get_packing(id)
     return jsonify(packing.put_into_dto()), 200
 
+@packing_bp.get('name/<string:name>')
+@cross_origin()
+def get_packing_by_name(name: str) -> Response:
+    packings = packing_controller.get_packing_by_name(name)
+    packings_dto = [packing.put_into_dto() for packing in packings]
+    return jsonify(packings_dto), 200
 
 @packing_bp.route('', methods=['GET'])
 @cross_origin()

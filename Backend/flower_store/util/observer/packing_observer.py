@@ -1,12 +1,15 @@
 from typing import Dict, List
+from flask_socketio import SocketIO, emit
+from flower_store import socketio
 
 
 class PackingObserver:
     def __init__(self, observer_id):
         self.observer_id = observer_id
 
-    def update(self, packing):
-        print("Packing updated")
+    def update(self, packing, action="updated"):
+        message = f"Packing {action}: {packing}"
+        socketio.emit('packing_update', message, room=self.sid)
 
 
 class PackingSubject:
